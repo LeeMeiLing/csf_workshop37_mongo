@@ -1,0 +1,34 @@
+<h1>workshop 37 File Upload</h1>
+
+<form [formGroup]="form" (ngSubmit)="upload()">
+  <table>
+    <tr>
+      <input type="file" formControlName="fileOne" (change)="onFileChange($event)">
+    </tr>
+    <tr>
+      <input type="file" formControlName="fileTwo" accept="image/*" #secondFile>
+    </tr>
+    <tr>
+      <input type="text" formControlName="comment">
+    </tr>
+    <tr>
+      <button type="submit">Upload</button>
+      <a [routerLink]="['/']">Home</a>
+      <!-- <button [routerLink]="['/']">Home</button> -->
+    </tr>
+  </table>
+</form>
+
+<div *ngIf="payload">
+  <button (click)="viewSql(payload.postId)">Image One</button>
+  <button (click)="viewMongo(payload.objectId)">Image Two</button>
+</div>
+
+<div *ngIf="imageDataOne">
+  <img src="{{imageDataOne}}" width="300px">
+</div>
+
+<div *ngIf="imageDataTwo">
+  <img src="{{imageDataTwo}}" width="300px">
+</div>
+
